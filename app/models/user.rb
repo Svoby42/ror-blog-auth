@@ -1,8 +1,8 @@
 class User < ApplicationRecord
-  validates :email, uniqueness: true
-  validates :username, uniqueness: true, presence: true
+  VALID_USER_REGEX = /\A[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*\z/i
+  validates :username, format: { with: VALID_USER_REGEX, message: "Uživatelské jméno obsahuje nepovolené znaky" }, uniqueness: true, presence: true
   validates :full_name, presence: true, on: :create
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "must be a valid email address" }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Špatný formát emailové adresy" }
   has_many :articles, dependent: :destroy
   before_save { self.email = email.downcase }
   has_secure_password

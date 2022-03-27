@@ -18,6 +18,7 @@ gem "rdoc"
 gem "bootstrap", "5.0.2"
 gem "faker"
 gem "will_paginate"
+gem "rails-controller-testing"
 
 
 group :development, :test do

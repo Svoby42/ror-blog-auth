@@ -4,6 +4,10 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
+    if @article.save
+      flash[:success] = "Příspěvek vytvořen"
+      redirect_to root_url
+    end
   end
 
   private
