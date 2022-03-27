@@ -6,3 +6,8 @@ pepa:
     email: "pepa.vyskocil1@seznam.cz"
     password_digest: <%= User.digest('password') %>
 
+alois:
+    username: "alois"
+    full_name: "Alois Rašín"
+    email: "alois.rasin@seznam.cz"
+    password_digest: <%= User.digest('password') %>
