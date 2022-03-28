@@ -1,4 +1,5 @@
 module UsersHelper
+
   DATE_FORMAT = "%d. %m. %Y %H:%M"
 
   def is_admin?(user)

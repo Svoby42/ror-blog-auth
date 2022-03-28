@@ -7,7 +7,8 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find_by(slug: params[:slug])
+    @article = Article.find_by(slug: params[:id])       #slug gets passed as id in this case, dont ask me why
+    @user = User.find_by(id: @article.user_id)
   end
 
   def create

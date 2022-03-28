@@ -1,6 +1,6 @@
 <div class="row", style="height: max-content">
   <h1>Uživatel</h1>
-  <div class="col-md-4 mt-3 border h-100">
+  <div class="col-md-4 mt-3">
     <table class="date-table">
       <tr>
         <td>Účet založen</td>
@@ -20,15 +20,26 @@
       </tr>
     </table>
   </div>
-  <div class="col-md-6 mt-3">
+  <div class="col-md-4 mt-3">
     Moje příspěvky
     <%= link_to "Nový příspěvek", new_article_path, method: :get, class: "btn btn-primary" %>
     <% if @user.articles.any? %>
-      <% @user.articles.each do |article| %>
-        <div>
-          <%= link_to "#{article.title}", article_path(article), class: "text-white" %>
-        </div>
-      <% end %>
+      <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+          <th scope="col">Název</th>
+          <th scope="col">Odkaz</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% @user.articles.each do |article| %>
+              <td><%= "#{article.title}" %></td>
+              <td><%= link_to "Odkaz", article_path(article), class: "text-white" %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
     <% end %>
   </div>
 </div>
