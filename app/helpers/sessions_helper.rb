@@ -2,6 +2,8 @@ module SessionsHelper
 
   def log_in(user)
     session[:user_id] = user.id
+    user = User.find_by(id: user.id)
+    user.update(last_login: DateTime.now)
   end
 
   def current_user

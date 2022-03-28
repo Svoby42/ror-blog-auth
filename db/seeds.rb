@@ -10,6 +10,7 @@ User.create!(username: "vyskocil",
              full_name: "Josef Vyskočil",
              email: "vyskocil@seznam.cz",
              password: "hesloheslo",
+             last_login: nil,
              role: "ADMIN",
              password_confirmation: "hesloheslo")
 

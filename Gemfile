@@ -20,6 +20,7 @@ gem "faker"
 gem "will_paginate"
 gem "rails-controller-testing"
 gem "friendly_id", "~> 5.4.0"
+gem "rails-i18n"
 
 
 group :development, :test do
