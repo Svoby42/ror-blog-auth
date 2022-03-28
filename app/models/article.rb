@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
+  has_rich_text :content
 
   VALID_SLUG_REGEX = /\A[a-z0-9]+(?:-[a-z0-9]+)*\z/i
   belongs_to :user

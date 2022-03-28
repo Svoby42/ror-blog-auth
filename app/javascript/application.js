@@ -2,5 +2,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "bootstrap"
-import "popper"import "trix"
+import "popper"
+import "trix"
 import "@rails/actiontext"

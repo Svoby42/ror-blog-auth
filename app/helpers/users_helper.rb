@@ -10,7 +10,7 @@ module UsersHelper
   end
 
   def last_login_time(user)
-    user.last_login.strftime(DATE_FORMAT)
+    user.last_login.present? ? user.last_login.strftime(DATE_FORMAT) : "nikdy"
   end
 
 end
