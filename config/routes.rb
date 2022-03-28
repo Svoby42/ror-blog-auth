@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get   '/profile', to: 'users#show'
   get   '/profile/edit', to: 'users#edit'
 
+  post '/articles/new', to: 'articles#create'
+
   resources :users
   resources :articles
 

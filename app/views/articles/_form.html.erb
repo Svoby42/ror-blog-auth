@@ -20,12 +20,13 @@
                 .replace(/\s+/g, '-')           // Replace spaces with -
                 .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
                 .replace(/\-\-+/g, '-');        // Replace multiple - with single -
+            //copied from https://gist.github.com/thierryc
         }
 
     </script>
 
-    <%= f.label :content, "Text" %>
-    <%= f.rich_text_area :content, class: "text-dark bg-white mb-3 h-25" %>
+    <%= f.label :article_content, "Text" %>
+    <%= f.rich_text_area :article_content, class: "text-dark bg-white mb-3 h-25" %>
 
     <%= f.submit "Nahrát", class: "btn btn-primary" %>
   </div>
