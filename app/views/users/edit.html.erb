@@ -1,13 +1,8 @@
 <% content_for(:title, "Změna údajů") %>
 <h1>Změnit údaje</h1>
-
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= form_with(model: @user, local: true) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :username, "Uživatelské jméno" %>
-      <%= f.text_field :username, class: 'form-control' %>
 
       <%= f.label :full_name, "Jméno a příjmení" %>
       <%= f.text_field :full_name, class: 'form-control' %>
@@ -18,10 +13,7 @@
       <%= f.label :password, "Heslo" %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Potvrdit heslo" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-      <%= f.submit "Uložit změny", class: "btn btn-primary" %>
+      <%= f.submit "Uložit změny", class: "btn btn-primary mt-3" %>
     <% end %>
   </div>
 </div>
