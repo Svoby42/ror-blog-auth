@@ -19,6 +19,7 @@ gem "bootstrap", "5.0.2"
 gem "faker"
 gem "will_paginate"
 gem "rails-controller-testing"
+gem "friendly_id", "~> 5.4.0"
 
 
 group :development, :test do

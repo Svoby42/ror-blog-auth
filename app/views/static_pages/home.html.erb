@@ -1,11 +1,9 @@
 <%= content_for(:title, "Domů") %>
 <% if logged_in? %>
-  Přihlášen jako: <%= current_user.name %>
+  Přihlášen jako: <%= current_user.username %>
   <% if is_admin?(current_user) %>
     (Administrátor)
   <% end %>
 <% else %>
   Nepřihlášený uživatel
 <% end %>
-
-<%= link_to  %>

@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  extend FriendlyId
+  friendly_id :username
+
   VALID_USER_REGEX = /\A[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*\z/i
   validates :username, format: { with: VALID_USER_REGEX, message: "Uživatelské jméno obsahuje nepovolené znaky" }, uniqueness: true, presence: true
   validates :full_name, presence: true, on: :create
