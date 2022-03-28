@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @other_user = User.find_by(username: params[:id])
     @articles = @user.articles
   end
 

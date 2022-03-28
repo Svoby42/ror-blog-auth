@@ -1,29 +1,31 @@
 <div class="row", style="height: max-content">
-  <h1>Uživatel</h1>
+  <h1>Uživatel <%= "#{@other_user.full_name} (#{@other_user.username})"  %></h1>
+  <% if @user == @other_user || is_admin?(@user) %>
+    <div class="col-md-4 mt-3">
+      <table class="date-table">
+        <tr>
+          <td>Účet založen</td>
+          <td><%= registered_at_time(@other_user) %></td>
+        </tr>
+        <tr>
+          <td>Poslední přihlášení</td>
+          <td><%= last_login_time(@other_user) %></td>
+        </tr>
+        <tr>
+          <td>Uživatelské jméno</td>
+          <td><%= current_user.username %></td>
+        </tr>
+        <tr>
+          <td>Celé jméno</td>
+          <td><%= current_user.full_name %></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
   <div class="col-md-4 mt-3">
-    <table class="date-table">
-      <tr>
-        <td>Účet založen</td>
-        <td><%= registered_at_time(@user) %></td>
-      </tr>
-      <tr>
-        <td>Poslední přihlášení</td>
-        <td><%= last_login_time(@user) %></td>
-      </tr>
-      <tr>
-        <td>Uživatelské jméno</td>
-        <td><%= current_user.username %></td>
-      </tr>
-      <tr>
-        <td>Celé jméno</td>
-        <td><%= current_user.full_name %></td>
-      </tr>
-    </table>
-  </div>
-  <div class="col-md-4 mt-3">
-    Moje příspěvky
-    <%= link_to "Nový příspěvek", new_article_path, method: :get, class: "btn btn-primary" %>
-    <% if @user.articles.any? %>
+    Příspěvky uživatele <%= "#{@other_user.username}" %>
+    <%= link_to "Nový příspěvek", new_article_path, method: :get, class: "btn btn-primary" if @other_user == @user %>
+    <% if @other_user.articles.any? %>
       <table class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -33,7 +35,7 @@
         </thead>
         <tbody>
           <tr>
-            <% @user.articles.each do |article| %>
+            <% @other_user.articles.each do |article| %>
               <td><%= "#{article.title}" %></td>
               <td><%= link_to "Odkaz", article_path(article), class: "text-white" %></td>
             <% end %>

@@ -15,7 +15,7 @@ User.create!(username: "vyskocil",
              password_confirmation: "hesloheslo")
 
 99.times do |n|
-  username = Faker::Name.first_name + ".#{n}"
+  username = Faker::Name.first_name + "_#{n}"
   full_name = Faker::Name.first_name + " " + Faker::Name.last_name
   email = "usernumber.#{n}@seznam.cz"
   password = "password"
