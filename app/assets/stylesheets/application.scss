@@ -14,3 +14,11 @@
  *= require_self
  */
 @import "bootstrap";
+
+.date-table {
+  tr{
+    td{
+      padding-right: 10px;
+    }
+  }
+}
