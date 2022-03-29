@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :not_logged_user, only: [:show]
   before_action :logged_in_user,  only: [:index, :edit, :update, :destroy]
   before_action :correct_user,    only: [:edit, :update]
   before_action :admin_user,      only: :destroy
@@ -8,9 +9,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
-    @other_user = User.find_by(username: params[:id])
-    @articles = @user.articles
+    unless current_user.nil?
+      @user = current_user
+      if request.path == "/profile"
+        @other_user = @user
+      else
+        @other_user = User.find_by(username: params[:id])
+      end
+    end
   end
 
   def new

@@ -22,24 +22,26 @@
       </table>
     </div>
   <% end %>
-  <div class="col-md-4 mt-3">
+  <div class="col-md-8 mt-3">
     Příspěvky uživatele <%= "#{@other_user.username}" %>
     <%= link_to "Nový příspěvek", new_article_path, method: :get, class: "btn btn-primary" if @other_user == @user %>
     <% if @other_user.articles.any? %>
-      <table class="table table-bordered table-striped">
+      <table class="table table-bordered table-striped text-white">
         <thead>
         <tr>
           <th scope="col">Název</th>
           <th scope="col">Odkaz</th>
+          <th scope="col">Vytvořeno</th>
         </tr>
         </thead>
         <tbody>
+        <% @other_user.articles.each do |article| %>
           <tr>
-            <% @other_user.articles.each do |article| %>
-              <td><%= "#{article.title}" %></td>
-              <td><%= link_to "Odkaz", article_path(article), class: "text-white" %></td>
-            <% end %>
+            <td><%= "#{article.title}" %></td>
+            <td><%= link_to "Odkaz", article_path(article), class: "text-white" %></td>
+            <td><%= "#{created_at_time(article)}" %></td>
           </tr>
+        <% end %>
         </tbody>
       </table>
     <% end %>
