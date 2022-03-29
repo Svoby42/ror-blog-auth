@@ -8,7 +8,7 @@
     <%= f.text_field :slug, class: "form-control mb-3", id: "slug" %>
 
     <%= f.label :topic_id, "Kategorie" %>
-    <%= options_from_collection_for_select(Topic.all, :id, :title) %>
+    <%= f.select :topic_id, Topic.all.collect { |x| [x.title, x.id]}, {}, class: "form-select mb-3" %>
 
     <script>
 

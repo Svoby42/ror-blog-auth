@@ -14,11 +14,20 @@ User.create!(username: "vyskocil",
              role: "ADMIN",
              password_confirmation: "hesloheslo")
 
-Topic.create!(title: "Kategorie",
-              description: "První kategorie",
-              slug: "kategorie")
+Topic.create!(title: "Zprávy",
+              description: "zprávy",
+              slug: "zpravy")
 
-10.times do |n|
+Topic.create!(title: "Recepty",
+              description: "recepty",
+              slug: "recepty")
+
+Topic.create!(title: "Právě se děje",
+              description: "co se právě děje",
+              slug: "co-se-prave-deje")
+
+
+50.times do |n|
   title = "#{Faker::Lorem.sentence(word_count: 3)}"
   article_content = "<div>#{Faker::Lorem.paragraph(sentence_count: 5)}</div>"
   user_id = 1

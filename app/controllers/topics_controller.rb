@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find_by(title: params[:id])
+    @topic = Topic.find_by(slug: params[:id])
   end
 
   def new
