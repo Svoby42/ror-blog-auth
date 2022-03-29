@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_28_192736) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_29_174648) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_28_192736) do
     t.string "title"
     t.string "article_content"
     t.integer "user_id"
+    t.integer "topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -71,6 +72,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_28_192736) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "topics", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "description", null: false
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_topics_on_slug", unique: true
+    t.index ["title"], name: "index_topics_on_title", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "full_name", null: false
@@ -86,5 +97,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_28_192736) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles", "topics"
   add_foreign_key "articles", "users"
 end
