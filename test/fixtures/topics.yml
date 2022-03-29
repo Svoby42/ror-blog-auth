@@ -4,8 +4,17 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
 # column: value
 #
-two: {}
 # column: value
+
+prihody:
+  title: "prihody"
+  slug: "prihody"
+  description: "prihody ze sveta"
+
+
+udalosti:
+  title: "udalosti"
+  slug: "udalosti"
+  description: "co se deje ve svete"

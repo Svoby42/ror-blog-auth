@@ -7,6 +7,7 @@ class Article < ApplicationRecord
   belongs_to :user
   validates :title,   presence: true, uniqueness: true
   validates :user_id, presence: true
+  validates :topic_id, presence: true
   validates :article_content, presence: true, length: { minimum: 10, message: "Článek je příliš krátký" }
   validates :slug,    presence: true, length: { maximum: 50 }, format: { with: VALID_SLUG_REGEX }
 end

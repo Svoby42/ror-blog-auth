@@ -1,1 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+first:
+  title: "Bezel pes pres oves"
+  article_content: "<p>Bezel pes pres oves</p>"
+  slug: "bezel-pes-pres-oves"
+  user: pepa
+
+second:
+  title: "Bezel pes pres obec"
+  article_content: "<p>Bezel pes pres obec</p>"
+  slug: "bezel-pes-pres-obec"
+  user: pepa

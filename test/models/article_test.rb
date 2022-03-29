@@ -4,7 +4,8 @@ class ArticleTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:pepa)
-    @article = Article.new(title: "Článek", content: "prvni clanek", slug: "clanek", user_id: @user.id)
+    @topic = topics(:udalosti)
+    @article = Article.new(title: "Článek", article_content: "prvni clanek", slug: "clanek", user_id: @user.id, topic_id: @topic.id)
   end
 
   test "should be valid" do
@@ -16,13 +17,13 @@ class ArticleTest < ActiveSupport::TestCase
     assert_not @article.valid?
   end
 
-  test "content should be present" do
-    @article.content = " "
+  test "topic id should be present" do
+    @article.topic_id = nil
     assert_not @article.valid?
   end
 
-  test "content should be at least 5 chars long" do
-    @article.content = "a" * 4
+  test "content should be present" do
+    @article.article_content = " "
     assert_not @article.valid?
   end
 

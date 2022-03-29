@@ -2,6 +2,10 @@ module UsersHelper
 
   DATE_FORMAT = "%d. %m. %Y %H:%M"
 
+  def admin_user
+    redirect_to(root_url) unless is_admin?(current_user)
+  end
+
   def is_admin?(user)
     user.role == "ADMIN"
   end

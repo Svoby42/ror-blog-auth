@@ -8,6 +8,7 @@ class UserTest < ActiveSupport::TestCase
                      email: "pepek.vyskocil@seznam.cz",
                      password: "heslo123",
                      password_confirmation: "heslo123")
+    @topic = topics(:udalosti)
   end
 
   test "should be valid" do
@@ -39,7 +40,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "articles of user should be destroyed" do
     @user.save
-    @user.articles.create!(title: "Článek", content: "prvni clanek", slug: "clanek")
+    @user.articles.create!(title: "Článek", article_content: "prvni clanek", slug: "clanek", topic_id: @topic.id)
     assert_difference 'Article.count', -1 do
       @user.destroy
     end
