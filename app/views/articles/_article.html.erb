@@ -1,2 +1,5 @@
-<%= article.title %>
-<%= article.article_content %>
+<tr>
+  <td><%= "#{article.title}" %></td>
+  <td><%= link_to "Odkaz", article_path(article), class: "text-white" %></td>
+  <td><%= "#{created_at_time(article)}" %></td>
+</tr>

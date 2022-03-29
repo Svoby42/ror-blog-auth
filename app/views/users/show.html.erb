@@ -1,5 +1,25 @@
+<% content_for(:title, "Profil") %>
 <div class="row", style="height: max-content">
   <h1>Uživatel <%= "#{@other_user.full_name} (#{@other_user.username})"  %></h1>
+  <div class="col-md-8 mt-3">
+    Příspěvky uživatele <%= "#{@other_user.username}" %>
+    <%= link_to "Nový příspěvek", new_article_path, method: :get, class: "btn btn-primary" if @other_user == @user %>
+    <% if @other_user.articles.any? %>
+      <table class="table table-bordered text-white mt-3">
+        <thead>
+        <tr>
+          <th scope="col">Název</th>
+          <th scope="col">Odkaz</th>
+          <th scope="col">Vytvořeno</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= will_paginate @articles, :previous_label => 'Předchozí', :next_label => 'Další' %>
+        <%= render @articles %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
   <% if @user == @other_user || is_admin?(@user) %>
     <div class="col-md-4 mt-3">
       <table class="date-table">
@@ -22,29 +42,5 @@
       </table>
     </div>
   <% end %>
-  <div class="col-md-8 mt-3">
-    Příspěvky uživatele <%= "#{@other_user.username}" %>
-    <%= link_to "Nový příspěvek", new_article_path, method: :get, class: "btn btn-primary" if @other_user == @user %>
-    <% if @other_user.articles.any? %>
-      <table class="table table-bordered table-striped text-white">
-        <thead>
-        <tr>
-          <th scope="col">Název</th>
-          <th scope="col">Odkaz</th>
-          <th scope="col">Vytvořeno</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% @other_user.articles.each do |article| %>
-          <tr>
-            <td><%= "#{article.title}" %></td>
-            <td><%= link_to "Odkaz", article_path(article), class: "text-white" %></td>
-            <td><%= "#{created_at_time(article)}" %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    <% end %>
-  </div>
 </div>
 

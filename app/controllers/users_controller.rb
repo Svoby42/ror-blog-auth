@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def show
     unless current_user.nil?
       @user = current_user
+      @articles = @user.articles.paginate(page: params[:page], per_page: 10)
       if request.path == "/profile"
         @other_user = @user
       else

@@ -29,7 +29,7 @@ Topic.create!(title: "Právě se děje",
 
 50.times do |n|
   title = "#{Faker::Lorem.sentence(word_count: 3)}"
-  article_content = "<div>#{Faker::Lorem.paragraph(sentence_count: 5)}</div>"
+  article_content = "<div>#{Faker::Lorem.paragraph(sentence_count: 30)}</div>"
   user_id = 1
   topic_id = 1
   slug = title.parameterize
