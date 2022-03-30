@@ -18,13 +18,12 @@ class ArticlesController < ApplicationController
       flash[:success] = "Příspěvek vytvořen"
       redirect_to "/profile"
     else
-      puts @article.errors.any?
+      flash[:danger] = "Chyba"
+      redirect_to root_url
     end
   end
 
   def update
-    puts "NAZDAR"
-    puts request.url
     @article = Article.find_by(slug: params[:id])
     if @article.update(article_params)
       flash[:success] = "Článek úspěšně upraven"
@@ -51,16 +50,8 @@ class ArticlesController < ApplicationController
     end
 
     def correct_user
-      puts "TADY KOUKEJ TADY"
-      puts request.params
-      puts session[:user_id]
       @article = current_user.articles.find_by(slug: params[:article_id])
-      puts "JE NULL NEBO NE"
-      puts @article.nil?
-      puts "CURRENT USER ARTS"
-      puts current_user.articles.any?
-      puts "PARAMS"
-      puts params[:article_id]
-      #redirect_to root_url if @article.nil?
+      flash[:danger] = "Článek není váš"
+      redirect_to root_url if @article.nil?
     end
 end

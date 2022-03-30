@@ -28,9 +28,7 @@ class TopicsController < ApplicationController
   private
 
   def set_articles
-    puts "HEHEHEHEHEHEHEHE"
     @topic = Topic.find_by(slug: params[:topic_id])
-    puts request.params
   end
 
 end
