@@ -1,0 +1,10 @@
+<tr class="text-white">
+    <td class="col-md-6 article-card">
+      <%= link_to show_article_path(article.topic.slug, article.slug), class: "text-white article" do %>
+        <h4 class="text-white"><%= article.title %></h4>
+        <p class="text-white"><%= shorten(article).truncate(length, separator: ' ') %></p>
+      <% end %>
+    </td>
+    <td><%= "#{created_at_time(article)}" %></td>
+    <td><%= link_to article.user.full_name, article.user, class: "text-white" %></td>
+</tr>

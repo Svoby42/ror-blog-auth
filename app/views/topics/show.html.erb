@@ -1,0 +1,22 @@
+<%= link_to "Nový článek", new_topic_article_path, class: "btn btn-primary mb-3" %>
+<% if @topic.articles.any? %>
+  <table class="table text-white mt-3">
+    <thead>
+    <tr>
+      <th scope="col">Název</th>
+      <th scope="col">Vytvořeno</th>
+      <th scope="col">Autor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= will_paginate @articles, :previous_label => 'Předchozí', :next_label => 'Další' %>
+    <%= render @articles, length: 200 %>
+    </tbody>
+  </table>
+  </table>
+<% else %>
+  <div class="mt-3">Kategorie
+    <strong><%= @topic.title %></strong>
+    ještě nemá žádné příspěvky
+  </div>
+<% end %>

@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  content: MyString
-  user_id: 1
+first:
+  title: "Bezel pes pres oves"
+  article_content: "<p>Bezel pes pres oves</p>"
+  slug: "bezel-pes-pres-oves"
+  user: pepa
 
-two:
-  title: MyString
-  content: MyString
-  user_id: 1
+second:
+  title: "Bezel pes pres obec"
+  article_content: "<p>Bezel pes pres obec</p>"
+  slug: "bezel-pes-pres-obec"
+  user: pepa

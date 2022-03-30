@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+@import "actiontext";
+
+.date-table {
+  tr{
+    td{
+      padding-right: 10px;
+    }
+  }
+}
+
+.pagination{
+  .current{
+    font-weight: bold;
+  }
+  .previous_page{
+    margin-right: 5px;
+  }
+  a{
+    color: white;
+    margin-left: 0.1vw;
+    margin-right: 0.2vw;
+  }
+}
+
+.article{
+  text-decoration: none;
+}
+
+.article-card{
+  &:hover{
+    text-decoration: underline;
+  }
+}

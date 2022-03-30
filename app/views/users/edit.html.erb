@@ -1,0 +1,19 @@
+<% content_for(:title, "Změna údajů") %>
+<h1>Změnit údaje</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @user, local: true) do |f| %>
+
+      <%= f.label :full_name, "Jméno a příjmení" %>
+      <%= f.text_field :full_name, class: 'form-control' %>
+
+      <%= f.label :email, "E-mail" %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password, "Pro potvrzení změn zadejte heslo" %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "Uložit změny", class: "btn btn-primary mt-3" %>
+    <% end %>
+  </div>
+</div>

@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  full_name: MyString
-  email: MyString
-  role: MyString
+pepa:
+    username: "pepa"
+    full_name: "Josef Vyskočil"
+    email: "pepa.vyskocil1@seznam.cz"
+    password_digest: <%= User.digest('password') %>
 
-two:
-  name: MyString
-  full_name: MyString
-  email: MyString
-  role: MyString
+alois:
+    username: "alois"
+    full_name: "Alois Rašín"
+    email: "alois.rasin@seznam.cz"
+    password_digest: <%= User.digest('password') %>

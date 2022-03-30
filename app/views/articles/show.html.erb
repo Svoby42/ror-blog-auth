@@ -1,0 +1,21 @@
+<div class="container row">
+  <div class="col-md-10">
+    <h2><%= @article.title %></h2>
+    <div>
+      <%= link_to "Upravit článek", edit_topic_article_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <table>
+      <tr>
+        <th><%= link_to "#{@user.full_name}", @user, class: "text-white", style: "float: right" %></th>
+      </tr>
+      <tr>
+        <th><%= created_at_time(@article) %></th>
+      </tr>
+    </table>
+  </div>
+  <div class="justify-content-center mt-3">
+    <%= @article.article_content %>
+  </div>
+</div>
