@@ -8,6 +8,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find_by(slug: params[:id])
+    @articles = @topic.articles.paginate(page: params[:page], per_page: 10)
   end
 
   def new

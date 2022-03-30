@@ -1,28 +1,17 @@
 <% if @topic.articles.any? %>
-  <table class="table text-white">
+  <table class="table text-white mt-3">
     <thead>
     <tr>
       <th scope="col">Název</th>
-      <th scope="col">Odkaz</th>
       <th scope="col">Vytvořeno</th>
       <th scope="col">Autor</th>
     </tr>
     </thead>
     <tbody>
-    <% @topic.articles.each do |article| %>
-      <tr class="text-white">
-        <td class="col-md-6">
-          <p><%= "#{article.title}" %></p>
-          <p>
-            <%= shorten(article).truncate(200, separator: ' ') %>
-          </p>
-        </td>
-        <td><%= link_to "Odkaz", article_path(article), class: "text-white" %></td>
-        <td><%= "#{created_at_time(article)}" %></td>
-        <td><%= link_to article.user.full_name, article.user, class: "text-white" %></td>
-      </tr>
-    <% end %>
+    <%= will_paginate @articles, :previous_label => 'Předchozí', :next_label => 'Další' %>
+    <%= render @articles, length: 200 %>
     </tbody>
+  </table>
   </table>
 <% else %>
   <div class="mt-3">Kategorie

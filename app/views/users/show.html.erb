@@ -1,46 +1,48 @@
 <% content_for(:title, "Profil") %>
-<div class="row", style="height: max-content">
-  <h1>Uživatel <%= "#{@other_user.full_name} (#{@other_user.username})"  %></h1>
+<div class="row" style="height: max-content">
+  <div class="row">
+    <div><h1>Uživatel <%= "#{@other_user.full_name} (#{@other_user.username})"  %></h1></div>
+    <% if (@user == @other_user || is_admin?(@user)) && current_user.present? %>
+      <div class="col-md-4 mt-3">
+        <table class="date-table">
+          <tr>
+            <td>Účet založen</td>
+            <td><%= registered_at_time(@other_user) %></td>
+          </tr>
+          <tr>
+            <td>Poslední přihlášení</td>
+            <td><%= last_login_time(@other_user) %></td>
+          </tr>
+          <tr>
+            <td>Uživatelské jméno</td>
+            <td><%= @other_user.username %></td>
+          </tr>
+          <tr>
+            <td>Celé jméno</td>
+            <td><%= @other_user.full_name %></td>
+          </tr>
+        </table>
+      </div>
+    <% end %>
+  </div>
   <div class="col-md-8 mt-3">
     Příspěvky uživatele <%= "#{@other_user.username}" %>
-    <%= link_to "Nový příspěvek", new_article_path, method: :get, class: "btn btn-primary" if @other_user == @user %>
+    <%= link_to "Nový příspěvek", new_article_path, method: :get, class: "btn btn-primary" if @other_user == @user && current_user.present? %>
     <% if @other_user.articles.any? %>
       <table class="table table-bordered text-white mt-3">
         <thead>
         <tr>
           <th scope="col">Název</th>
-          <th scope="col">Odkaz</th>
           <th scope="col">Vytvořeno</th>
+          <th scope="col">Autor</th>
         </tr>
         </thead>
         <tbody>
         <%= will_paginate @articles, :previous_label => 'Předchozí', :next_label => 'Další' %>
-        <%= render @articles %>
+        <%= render @articles, length: 50 %>
         </tbody>
       </table>
     <% end %>
   </div>
-  <% if @user == @other_user || is_admin?(@user) %>
-    <div class="col-md-4 mt-3">
-      <table class="date-table">
-        <tr>
-          <td>Účet založen</td>
-          <td><%= registered_at_time(@other_user) %></td>
-        </tr>
-        <tr>
-          <td>Poslední přihlášení</td>
-          <td><%= last_login_time(@other_user) %></td>
-        </tr>
-        <tr>
-          <td>Uživatelské jméno</td>
-          <td><%= @other_user.username %></td>
-        </tr>
-        <tr>
-          <td>Celé jméno</td>
-          <td><%= @other_user.full_name %></td>
-        </tr>
-      </table>
-    </div>
-  <% end %>
 </div>
 

@@ -9,9 +9,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    unless current_user.nil?
+    if current_user.nil?
+      @user = User.find_by(username: params[:id])
+      @articles = @user.articles.paginate(page: params[:page], per_page: 10).order(:title)
+    else
       @user = current_user
-      @articles = @user.articles.paginate(page: params[:page], per_page: 10)
+      @articles = @user.articles.paginate(page: params[:page], per_page: 10).order(:title)
       if request.path == "/profile"
         @other_user = @user
       else

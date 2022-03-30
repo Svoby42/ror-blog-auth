@@ -33,7 +33,17 @@
   }
   a{
     color: white;
-    margin-left: 0.5vw;
-    margin-right: 0.5vw;
+    margin-left: 0.1vw;
+    margin-right: 0.2vw;
+  }
+}
+
+.article{
+  text-decoration: none;
+}
+
+.article-card{
+  &:hover{
+    text-decoration: underline;
   }
 }
