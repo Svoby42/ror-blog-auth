@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
-  before_action :set_topic
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user, only: [:edit, :destroy]
+  #before_action :set_topic
+  before_action :logged_in_user, only: [:create]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     @article = Article.new
@@ -22,8 +22,21 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def edit
+  def update
+    puts "NAZDAR"
+    puts request.url
     @article = Article.find_by(slug: params[:id])
+    if @article.update(article_params)
+      flash[:success] = "Článek úspěšně upraven"
+      redirect_to show_article_path(@article.topic.slug, @article.slug)
+    else
+      flash[:danger] = "Chyba"
+      render request.original_url
+    end
+  end
+
+  def edit
+    @article = Article.find_by(slug: params[:article_id])
   end
 
   private
@@ -34,12 +47,20 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :article_content, :slug)
+      params.require(:article).permit(:title, :article_content, :slug, :topic_id)
     end
 
     def correct_user
+      puts "TADY KOUKEJ TADY"
       puts request.params
+      puts session[:user_id]
       @article = current_user.articles.find_by(slug: params[:article_id])
-      redirect_to root_url if @article.nil?
+      puts "JE NULL NEBO NE"
+      puts @article.nil?
+      puts "CURRENT USER ARTS"
+      puts current_user.articles.any?
+      puts "PARAMS"
+      puts params[:article_id]
+      #redirect_to root_url if @article.nil?
     end
 end

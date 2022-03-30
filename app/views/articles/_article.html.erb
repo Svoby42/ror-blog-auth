@@ -1,6 +1,6 @@
 <tr class="text-white">
     <td class="col-md-6 article-card">
-      <%= link_to show_article_path(params[:topic_id], article.slug), class: "text-white article" do %>
+      <%= link_to show_article_path(article.topic.slug, article.slug), class: "text-white article" do %>
         <h4 class="text-white"><%= article.title %></h4>
         <p class="text-white"><%= shorten(article).truncate(length, separator: ' ') %></p>
       <% end %>
