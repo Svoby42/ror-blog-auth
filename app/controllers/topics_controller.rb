@@ -1,13 +1,13 @@
 class TopicsController < ApplicationController
-  #before_action :logged_in_user
+  before_action :set_articles,   only: [:show]
   before_action :admin_user,    only: [:edit, :update, :destroy, :create]
 
   def index
-    @topics = Topic.find(params[:id])
+    @topics = Topic.all
   end
 
   def show
-    @topic = Topic.find_by(slug: params[:id])
+    @topic = Topic.find_by(slug: params[:topic_id])
     @articles = @topic.articles.paginate(page: params[:page], per_page: 10)
   end
 
@@ -23,6 +23,14 @@ class TopicsController < ApplicationController
     Topic.find(params[:id]).destroy
     flash[:success] = "Rubrika smazána"
     redirect_to root_url
+  end
+
+  private
+
+  def set_articles
+    puts "HEHEHEHEHEHEHEHE"
+    @topic = Topic.find_by(slug: params[:topic_id])
+    puts request.params
   end
 
 end

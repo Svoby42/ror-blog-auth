@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :topics
+  resources :articles
+
   get   '/home',    to: 'static_pages#home'
 
   get   '/login',   to: 'sessions#new'
@@ -13,9 +16,10 @@ Rails.application.routes.draw do
   post '/articles/new', to: 'articles#create'
 
   resources :users
-  resources :articles
-  resources :topics
 
   root 'static_pages#home'
+
+  get   '/:topic_id', to: 'topics#show'
+  get   '/:topic_id/:article_id', to: 'articles#show'
 
 end

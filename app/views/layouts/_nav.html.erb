@@ -10,8 +10,8 @@
         <li class="nav-item"><%= link_to "Domů", root_path, class: "nav-link" %></li>
         <% if Topic.any? %>
           <% Topic.all.each do |topic| %>
-            <li class="nav-item"><%= link_to "#{topic.title}", topic, class: "nav-link" %></li>
-      <% end %>
+            <li class="nav-item"><%= link_to "#{topic.title}", "/#{topic.slug}", class: "nav-link" %></li>
+          <% end %>
         <% end %>
       </ul>
       <% if logged_in? %>

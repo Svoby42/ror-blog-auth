@@ -5,6 +5,7 @@ class Article < ApplicationRecord
 
   VALID_SLUG_REGEX = /\A[a-z0-9]+(?:-[a-z0-9]+)*\z/i
   belongs_to :user
+  belongs_to :topic
   validates :title,   presence: true, uniqueness: true
   validates :user_id, presence: true
   validates :topic_id, presence: true
