@@ -1,0 +1,18 @@
+<% content_for :title, "Uživatelé" %>
+<table class="table table-bordered text-white mt-3">
+  <thead>
+  <tr>
+    <th scope="col">Uživatelské jméno</th>
+    <th scope="col">Celé jméno</th>
+    <th scope="col">Email</th>
+    <th scope="col">Práva</th>
+    <th scope="col">Poslední přihlášení</th>
+    <th scope="col">Datum registrace</th>
+    <th scope="col">Možnosti</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= will_paginate @users, :previous_label => 'Předchozí', :next_label => 'Další' %>
+  <%= render @users %>
+  </tbody>
+</table>

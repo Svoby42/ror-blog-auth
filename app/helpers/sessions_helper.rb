@@ -1,5 +1,7 @@
 module SessionsHelper
 
+  @user = ""
+
   def log_in(user)
     session[:user_id] = user.id
     user = User.find_by(id: user.id)
@@ -25,5 +27,4 @@ module SessionsHelper
     reset_session
     @current_user = nil
   end
-
 end

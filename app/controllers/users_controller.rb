@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :admin_user,      only: :destroy
 
   def index
-    @users = User.order(:name)
+    @users = User.all.paginate(page: params[:page], per_page: 10).order(:username)
   end
 
   def show
@@ -63,9 +63,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    User.find_by(username: params[:id]).destroy
     flash[:success] = "Uživatel smazán"
-    redirect_to root_url
+    redirect_to users_url
   end
 
   private
