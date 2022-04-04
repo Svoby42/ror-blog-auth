@@ -47,18 +47,18 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.authenticate(user_params[:password])
-      if @user.update(user_params)
+      if @user.update(params.require(:user).permit(:full_name, :email, :password))
         flash[:success] = "Profil aktualizován"
-        redirect_to "/profile"
+        redirect_to profile_url
       else
         @user.errors.full_messages.each do |msg|
           flash[:danger] = msg
         end
-        redirect_to "/profile/edit"
+        redirect_to profile_url
       end
     else
       flash[:danger] = "Špatné nebo chybějící heslo, pro změnu údajů zadejte stávající heslo"
-      redirect_to "/profile/edit"
+      redirect_to profile_url
     end
   end
 
