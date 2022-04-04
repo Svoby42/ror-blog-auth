@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find_by(slug: params[:topic_id])
-    @articles = @topic.articles.paginate(page: params[:page], per_page: 10)
+    @articles = Article.includes(:user, :topic).with_all_rich_text.paginate(page: params[:page], per_page: 10).order(:title)
   end
 
   def new

@@ -11,10 +11,10 @@ class UsersController < ApplicationController
   def show
     if current_user.nil?
       @user = User.find_by(username: params[:id])
-      @articles = @user.articles.paginate(page: params[:page], per_page: 10).order(:title)
+      @articles = Article.includes(:user, :topic).with_all_rich_text.paginate(page: params[:page], per_page: 10).order(:title)
     else
       @user = current_user
-      @articles = @user.articles.paginate(page: params[:page], per_page: 10).order(:title)
+      @articles = Article.includes(:user, :topic).with_all_rich_text.paginate(page: params[:page], per_page: 10).order(:title)
       if request.path == "/profile"
         @other_user = @user
       else
@@ -33,7 +33,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to login_url, notice: "Uživatel #{@user.username} úspěšně vytvořen" }
