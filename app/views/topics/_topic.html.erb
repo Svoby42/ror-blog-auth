@@ -1,0 +1,6 @@
+<tr>
+  <td><%= topic.title %></td>
+  <td><%= topic.description %></td>
+  <td><%= created_at_time(topic)%></td>
+  <td><%= link_to topic.title, topic_url(topic), class: "text-white" %></td>
+</tr>

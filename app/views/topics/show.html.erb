@@ -1,4 +1,4 @@
-<%= link_to "Nový článek", new_topic_article_path, class: "btn btn-primary mb-3" %>
+<%= link_to "Nový článek", new_topic_article_path, class: "btn btn-primary mb-3" if logged_in? %>
 <% if @topic.articles.any? %>
   <table class="table text-white mt-3">
     <thead>
