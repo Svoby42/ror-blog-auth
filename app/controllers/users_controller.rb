@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :not_logged_user, only: [:show]
+  before_action :not_logged_user, only: :show
   before_action :logged_in_user,  only: [:index, :edit, :update, :destroy]
   before_action :correct_user,    only: [:edit, :update]
   before_action :admin_user,      only: :destroy
@@ -10,17 +10,17 @@ class UsersController < ApplicationController
 
   def show
     if current_user.nil?
-      @user = User.find_by(username: params[:id])
-      @articles = Article.includes(:user, :topic).with_all_rich_text.paginate(page: params[:page], per_page: 10).order(:title)
+      @user = User.find_by(username: params[:id]) or redirect_to not_found_url
+      @other_user = @user
     else
       @user = current_user
-      @articles = Article.includes(:user, :topic).with_all_rich_text.paginate(page: params[:page], per_page: 10).order(:title)
       if request.path == "/profile"
         @other_user = @user
       else
         @other_user = User.find_by(username: params[:id])
       end
     end
+    @articles = Article.includes(:user, :topic).with_all_rich_text.paginate(page: params[:page], per_page: 10).order(:title)
   end
 
   def new

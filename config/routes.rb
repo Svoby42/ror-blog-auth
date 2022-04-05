@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   get   '/profile', to: 'users#show'
   get   '/profile/edit', to: 'users#edit', as: :edit_profile
   patch '/profile/edit', to: 'users#update', as: :update_profile
-  get   '/users/:id', to: 'users#destroy', as: :delete_user
+  post  '/users/:id', to: 'users#destroy', as: :delete_user
 
+  get "/404", to: "errors#not_found", as: :not_found
+  get "/500", to: "errors#internal_error", as: :internal_error
 
   post '/articles/new', to: 'articles#create'
 
