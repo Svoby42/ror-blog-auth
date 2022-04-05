@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   include UsersHelper
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from AbstractController::ActionNotFound, with: :record_not_found
+  rescue_from ActionController::RoutingError, with: :record_not_found
+  rescue_from NoMethodError, with: :record_not_found
 
   private
 

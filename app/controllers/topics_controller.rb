@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.find_by(slug: params[:topic_id]) or redirect_to not_found_url
+    @topic = Topic.find_by(slug: params[:topic_id])
     @articles = Article.includes(:user, :topic).with_all_rich_text.paginate(page: params[:page], per_page: 10).order(:title)
   end
 

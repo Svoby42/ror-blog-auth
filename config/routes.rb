@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   get   '/:topic_id/:article_id', to: 'articles#show', as: :show_article
   get   '/:topic_id/:article_id/edit', to: 'articles#edit', as: :edit_topic_article
 
+  get '*unmatched_route', to: 'errors#not_found'
 end

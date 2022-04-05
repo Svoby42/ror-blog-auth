@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     if current_user.nil?
-      @user = User.find_by(username: params[:id]) or redirect_to not_found_url
+      @user = User.find_by(username: params[:id])
       @other_user = @user
     else
       @user = current_user
