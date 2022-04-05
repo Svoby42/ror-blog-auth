@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   resources :users
 
   get   '/:topic_id', to: 'topics#show'
+  get   '/:topic_id/edit', to: 'topics#edit'
+  post  '/:topic_id/edit', to: 'topics#update'
+
   get   '/:topic_id/new', to: 'articles#new', as: :new_topic_article
   get   '/:topic_id/:article_id', to: 'articles#show', as: :show_article
   get   '/:topic_id/:article_id/edit', to: 'articles#edit', as: :edit_topic_article

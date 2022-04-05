@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-  #before_action :set_topic
   before_action :logged_in_user, only: [:create]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
@@ -50,8 +49,7 @@ class ArticlesController < ApplicationController
     end
 
     def correct_user
-      @article = current_user.articles.find_by(slug: params[:article_id])
-      flash[:danger] = "Článek není váš"
+      (@article = current_user.articles.find_by(slug: params[:article_id])) or (flash[:danger] = "Článek není váš")
       redirect_to root_url if @article.nil?
     end
 end
