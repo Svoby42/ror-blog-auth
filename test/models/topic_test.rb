@@ -32,10 +32,9 @@ class TopicTest < ActiveSupport::TestCase
     assert_not @topic.valid?
   end
 
-  test "title should be unique" do
+  test "title and slug should be unique" do
     duplicate = @topic.dup
     @topic.save
     assert_not duplicate.valid?
   end
-
 end

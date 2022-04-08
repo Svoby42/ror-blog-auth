@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
+    @article.images.attach(params[:article][:images])
     if @article.save
       flash[:success] = "Příspěvek vytvořen"
       redirect_to profile_path

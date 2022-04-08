@@ -15,7 +15,7 @@ module UsersHelper
   end
 
   def is_admin?(user)
-    user.role == "ADMIN"
+    user.role == "ADMIN" unless user.nil?
   end
 
   def registered_at_time(user)
