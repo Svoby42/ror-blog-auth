@@ -56,7 +56,6 @@ class ArticlesController < ApplicationController
 
     def correct_user
       @article = current_user.articles.find_by(slug: params[:article_id])
-      puts "PARAMS #{params}"
       flash[:danger] = "Článek není váš" if @article.nil?
       redirect_to root_url if @article.nil?
     end
