@@ -1,0 +1,8 @@
+<tr>
+  <td><%= topic.title %></td>
+  <td><%= topic.description %></td>
+  <td><%= created_at_time(topic)%></td>
+  <td>
+    <%= link_to "Upravit #{topic.title}", edit_topic_path(topic), class: "text-white" %>
+  </td>
+</tr>

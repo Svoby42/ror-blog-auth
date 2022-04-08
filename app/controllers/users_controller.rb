@@ -1,26 +1,26 @@
 class UsersController < ApplicationController
-  before_action :not_logged_user, only: [:show]
+  before_action :not_logged_user, only: :show
   before_action :logged_in_user,  only: [:index, :edit, :update, :destroy]
   before_action :correct_user,    only: [:edit, :update]
   before_action :admin_user,      only: :destroy
 
   def index
-    @users = User.order(:name)
+    @users = User.all.paginate(page: params[:page], per_page: 10).order(:username)
   end
 
   def show
     if current_user.nil?
       @user = User.find_by(username: params[:id])
-      @articles = @user.articles.paginate(page: params[:page], per_page: 10).order(:title)
+      @other_user = @user
     else
       @user = current_user
-      @articles = @user.articles.paginate(page: params[:page], per_page: 10).order(:title)
       if request.path == "/profile"
         @other_user = @user
       else
         @other_user = User.find_by(username: params[:id])
       end
     end
+    @articles = Article.includes(:user, :topic).with_all_rich_text.paginate(page: params[:page], per_page: 10).order(:title)
   end
 
   def new
@@ -33,7 +33,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to login_url, notice: "Uživatel #{@user.username} úspěšně vytvořen" }
@@ -48,25 +47,25 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.authenticate(user_params[:password])
-      if @user.update(user_params)
+      if @user.update(params.require(:user).permit(:full_name, :email, :password))
         flash[:success] = "Profil aktualizován"
-        redirect_to "/profile"
+        redirect_to profile_url
       else
         @user.errors.full_messages.each do |msg|
           flash[:danger] = msg
         end
-        redirect_to "/profile/edit"
+        redirect_to profile_url
       end
     else
       flash[:danger] = "Špatné nebo chybějící heslo, pro změnu údajů zadejte stávající heslo"
-      redirect_to "/profile/edit"
+      redirect_to profile_url
     end
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    User.find_by(username: params[:id]).destroy
     flash[:success] = "Uživatel smazán"
-    redirect_to root_url
+    redirect_to users_url
   end
 
   private

@@ -8,7 +8,10 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:session][:password])
       reset_session
       log_in user
-      redirect_to "/profile"
+      redirect_to profile_path
+    else
+      redirect_to login_path
+      flash[:danger] = "Špatné údaje"
     end
   end
 

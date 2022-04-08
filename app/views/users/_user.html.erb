@@ -1,0 +1,9 @@
+<tr class="text-white">
+  <td><%= user.username %></td>
+  <td><%= user.full_name %></td>
+  <td><%= user.email %></td>
+  <td><%= user.role %></td>
+  <td><%= last_login_time(user) %></td>
+  <td><%= registered_at_time(user) %></td>
+  <td><%= link_to "Smazat", delete_user_path(user), method: :post, data: { confirm: 'Potvrdit' }, class: "text-white" unless user == current_user %></td>
+</tr>

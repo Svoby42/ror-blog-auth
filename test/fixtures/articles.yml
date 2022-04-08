@@ -5,9 +5,11 @@ first:
   article_content: "<p>Bezel pes pres oves</p>"
   slug: "bezel-pes-pres-oves"
   user: pepa
+  topic: prihody
 
 second:
   title: "Bezel pes pres obec"
   article_content: "<p>Bezel pes pres obec</p>"
   slug: "bezel-pes-pres-obec"
   user: pepa
+  topic: prihody
