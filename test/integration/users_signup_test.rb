@@ -1,6 +1,6 @@
 require "test_helper"
 
-class UserSignupTest < ActionDispatch::IntegrationTest
+class UsersSignupTest < ActionDispatch::IntegrationTest
 
   test "should register a user with valid information" do
     get signup_path
@@ -9,7 +9,8 @@ class UserSignupTest < ActionDispatch::IntegrationTest
                                          full_name: Faker::Name.first_name + " " + Faker::Name.last_name,
                                          email: "josef.vyskocil2@seznam.cz",
                                          password: "heslo123",
-                                         password_confirmation: "heslo123"  } }
+                                         password_confirmation: "heslo123",
+                                         role: "ADMIN"} }
     end
     user = assigns(:user)
     assert user.role = "USER"

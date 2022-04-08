@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
+    @article.images.attach(params[:article][:images])
     if @article.save
       flash[:success] = "Příspěvek vytvořen"
       redirect_to profile_path
@@ -56,7 +57,6 @@ class ArticlesController < ApplicationController
 
     def correct_user
       @article = current_user.articles.find_by(slug: params[:article_id])
-      puts "PARAMS #{params}"
       flash[:danger] = "Článek není váš" if @article.nil?
       redirect_to root_url if @article.nil?
     end

@@ -4,21 +4,22 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:pepa)
+    @admin = users(:admin)
   end
 
-  test "should get new" do
+  test "should get signup" do
     get signup_path
     assert_response :success
   end
 
   test "should redirect edit when not logged in" do
-    get edit_user_path(@user)
+    get edit_profile_path(@user)
     assert_not flash.empty?
     assert_redirected_to login_url
   end
 
   test "should redirect update when not logged in" do
-    patch user_path(@user), params: { user: { username: @user.username, email: @user.email } }
+    patch update_profile_path(@user), params: { user: { username: @user.username, email: @user.email } }
     assert_not flash.empty?
     assert_redirected_to login_url
   end
@@ -30,4 +31,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not @user.role == "ADMIN"
   end
 
+  test "should destroy articles if user destroyed" do
+    log_in_as(@admin)
+    assert_difference 'Article.count', -2 do
+      get delete_user_path(@user)
+    end
+  end
 end

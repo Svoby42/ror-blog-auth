@@ -132,6 +132,8 @@ GEM
     mini_magick (4.11.0)
     mini_mime (1.1.2)
     minitest (5.15.0)
+    miss_hannigan (0.1.2)
+      rails (>= 5.1)
     msgpack (1.5.1)
     net-imap (0.2.3)
       digest
@@ -269,6 +271,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   loofah
+  miss_hannigan
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.3)
   rails-controller-testing

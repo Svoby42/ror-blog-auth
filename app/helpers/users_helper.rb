@@ -8,11 +8,14 @@ module UsersHelper
   end
 
   def admin_user
-    redirect_to(root_url) unless is_admin?(current_user)
+    unless is_admin?(current_user)
+      flash[:danger] = "Nedostatečné oprávnění"
+      redirect_to(root_url)
+    end
   end
 
   def is_admin?(user)
-    user.role == "ADMIN"
+    user.role == "ADMIN" unless user.nil?
   end
 
   def registered_at_time(user)

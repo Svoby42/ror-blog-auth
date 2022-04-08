@@ -14,6 +14,14 @@ User.create!(username: "vyskocil",
              role: "ADMIN",
              password_confirmation: "hesloheslo")
 
+User.create!(username: "spisovatel",
+             full_name: "Sysoj Psojič Ryspoloženskyj",
+             email: "sysoj@seznam.cz",
+             password: "hesloheslo",
+             last_login: nil,
+             role: "ADMIN",
+             password_confirmation: "hesloheslo")
+
 Topic.create!(title: "Zprávy",
               description: "zprávy",
               slug: "zpravy")
@@ -27,7 +35,7 @@ Topic.create!(title: "Právě se děje",
               slug: "co-se-prave-deje")
 
 
-50.times do |n|
+10.times do |n|
   title = "#{Faker::Lorem.sentence(word_count: 3)}"
   article_content = "<div>#{Faker::Lorem.paragraph(sentence_count: 30)}</div>"
   user_id = 1
@@ -42,7 +50,21 @@ Topic.create!(title: "Právě se děje",
 end
 
 10.times do |n|
-  username = Faker::Name.first_name + "_#{n}"
+  title = "#{Faker::Lorem.sentence(word_count: 3)}"
+  article_content = "<div>#{Faker::Lorem.paragraph(sentence_count: 30)}</div>"
+  user_id = 2
+  topic_id = 1
+  slug = title.parameterize
+  Article.create!(title: title,
+                  article_content: article_content,
+                  user_id: user_id,
+                  topic_id: topic_id,
+                  slug: slug
+  )
+end
+
+10.times do |n|
+  username = Faker::Name.first_name.downcase + "_#{n}"
   full_name = Faker::Name.first_name + " " + Faker::Name.last_name
   email = "usernumber.#{n}@seznam.cz"
   password = "password"
