@@ -23,6 +23,7 @@ gem "friendly_id", "~> 5.4.0"
 gem "rails-i18n"
 gem "loofah"
 gem "bullet"
+gem "image_processing", "~> 1.2"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

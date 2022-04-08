@@ -34,7 +34,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find_by(slug: params[:article_id])
+    @article = Article.find_by(slug: params[:id])
   end
 
   private
@@ -45,11 +45,11 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :article_content, :slug, :topic_id)
+      params.require(:article).permit(:title, :article_content, :slug, :topic_id, images: [])
     end
 
     def correct_user
-      (@article = current_user.articles.find_by(slug: params[:article_id])) or (flash[:danger] = "Článek není váš")
+      @article = current_user.articles.find_by(slug: params[:id])
       redirect_to root_url if @article.nil?
     end
 end
