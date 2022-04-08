@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.build(article_params)
     if @article.save
       flash[:success] = "Příspěvek vytvořen"
-      redirect_to "/profile"
+      redirect_to profile_path
     else
       flash[:danger] = "Chyba"
       redirect_to root_url
@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find_by(slug: params[:id])
+    @article = Article.find_by(slug: params[:article_id])
     if @article.update(article_params)
       flash[:success] = "Článek úspěšně upraven"
       redirect_to show_article_path(@article.topic.slug, @article.slug)
@@ -34,7 +34,13 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find_by(slug: params[:id])
+    @article = Article.find_by(slug: params[:article_id])
+  end
+
+  def destroy
+    @article.destroy
+    flash[:success] = "Článek smazán"
+    redirect_to root_url
   end
 
   private
@@ -49,7 +55,9 @@ class ArticlesController < ApplicationController
     end
 
     def correct_user
-      @article = current_user.articles.find_by(slug: params[:id])
+      @article = current_user.articles.find_by(slug: params[:article_id])
+      puts "PARAMS #{params}"
+      flash[:danger] = "Článek není váš" if @article.nil?
       redirect_to root_url if @article.nil?
     end
 end
