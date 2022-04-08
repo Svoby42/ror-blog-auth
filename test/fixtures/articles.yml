@@ -13,3 +13,10 @@ second:
   slug: "bezel-pes-pres-obec"
   user: pepa
   topic: prihody
+
+third:
+  title: "Bezel pes pres namesti"
+  article_content: "<p>Bezel pes pres namesti</p>"
+  slug: "bezel-pes-pres-namesti"
+  user: alois
+  topic: prihody
