@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   before_action :not_logged_user, only: :show
-  before_action :logged_in_user,  only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user,  only: [:edit, :update, :destroy]
   before_action :correct_user,    only: [:edit, :update]
-  before_action :admin_user,      only: :destroy
+  before_action :admin_user,      only: [:index, :destroy]
 
   def index
-    @users = User.all.paginate(page: params[:page], per_page: 10).order(:username)
+    @users = User.where.not(id: current_user.id).all.paginate(page: params[:page], per_page: 10).order(:username)
   end
 
   def show
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         @other_user = User.find_by(username: params[:id])
       end
     end
-    @articles = Article.includes(:user, :topic).with_all_rich_text.paginate(page: params[:page], per_page: 10).order(:title)
+    @articles = Article.includes(:user, :topic).where(user_id: @other_user.id).with_all_rich_text.paginate(page: params[:page], per_page: 10).order(:title)
   end
 
   def new

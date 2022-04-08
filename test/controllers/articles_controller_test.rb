@@ -15,6 +15,12 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should edit if correct user" do
+    log_in_as(@owner)
+    get edit_topic_article_path(@article.topic.slug, @article.slug)
+    assert_template "articles/edit"
+  end
+
   test "should redirect destroy if wrong user" do
     log_in_as(@other_user)
     assert_no_difference 'Article.count' do
@@ -24,8 +30,10 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
-  test "should redirect update if wrong user" do
-    log_in_as(users(:pepa))
+  test "should redirect edit if wrong user" do
+    log_in_as(@other_user)
+    get edit_topic_article_path(@article.topic.slug, @article.slug)
+    assert_redirected_to root_url
   end
 
 end

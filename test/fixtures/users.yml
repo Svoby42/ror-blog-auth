@@ -11,3 +11,10 @@ alois:
     full_name: "Alois Rašín"
     email: "alois.rasin@seznam.cz"
     password_digest: <%= User.digest('password') %>
+
+admin:
+    username: "admin"
+    full_name: "Admin Nimda"
+    email: "admin@seznam.cz"
+    password_digest: <%= User.digest('password') %>
+    role: "ADMIN"
