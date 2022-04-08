@@ -7,7 +7,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @admin = users(:admin)
   end
 
-  test "should get new" do
+  test "should get signup" do
     get signup_path
     assert_response :success
   end
@@ -33,9 +33,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy articles if user destroyed" do
     log_in_as(@admin)
-    assert_difference 'Article.count' do
+    assert_difference 'Article.count', -2 do
       get delete_user_path(@user)
     end
   end
-
 end

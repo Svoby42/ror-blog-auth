@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_action :set_topic,     only: [:show, :edit]
-  before_action :admin_user,    only: [:edit, :update, :destroy, :create, :index]
+  before_action :admin_user,    only: [:new, :edit, :update, :destroy, :create, :index]
 
   def index
     @topics = Topic.all

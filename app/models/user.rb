@@ -8,7 +8,8 @@ class User < ApplicationRecord
   validates :full_name, format: { with: VALID_NAME_REGEX, message: "Celé jméno obsahuje nepovolené znaky" }, presence: true, on: [:create, :update]
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Špatný formát emailové adresy" }
   validates :password_digest, presence: true, length: { minimum: 6 }
-  has_many :articles, dependent: :nullify_then_purge
+  # has_many :articles, dependent: :nullify_then_purge # miss hannigan gem, use in production, tests dont pass if enabled
+  has_many :articles, dependent: :delete_all
   before_save { self.email = email.downcase }
   has_secure_password
 

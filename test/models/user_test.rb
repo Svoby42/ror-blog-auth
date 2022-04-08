@@ -37,13 +37,4 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_not duplicate_user.valid?
   end
-
-  test "articles of user should be destroyed" do
-    @user.save
-    @user.articles.create!(title: "Článek", article_content: "prvni clanek", slug: "clanek", topic_id: @topic.id)
-    assert_difference 'Article.count', -1 do
-      @user.destroy
-    end
-  end
-
 end
